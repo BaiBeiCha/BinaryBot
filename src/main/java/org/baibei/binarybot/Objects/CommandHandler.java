@@ -10,7 +10,7 @@ public class CommandHandler {
         int index = findCommand(words);
         if (index == -1) {
             Command c = new Command();
-            c.setCommand("invalid");
+            c.setCommand("Invalid command");
             return c;
         }
 
@@ -33,8 +33,10 @@ public class CommandHandler {
 
     private static int findCommand(String[] words) {
         for (int i = 0; i < words.length; i++) {
-            if (words[i].charAt(0) == '/') {
-                return i;
+            if (!words[i].isEmpty()) {
+                if (words[i].charAt(0) == '/') {
+                    return i;
+                }
             }
         }
 

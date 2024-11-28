@@ -71,8 +71,12 @@ public class Convertor {
     private static String getString(String[] words, StringBuilder builder) {
         for (String word : words) {
             if (!word.isEmpty()) {
-                char c = (char) (convertBinaryToDecimal(Long.parseLong(word)));
-                builder.append(c);
+                try {
+                    char c = (char) (convertBinaryToDecimal(Long.parseLong(word)));
+                    builder.append(c);
+                } catch (Exception e) {
+                    return "❌";
+                }
             }
         }
 

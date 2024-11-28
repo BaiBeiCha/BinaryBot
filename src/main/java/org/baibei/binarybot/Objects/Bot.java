@@ -37,9 +37,24 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private String buildMessage(Update update) {
-        String mes = update.getMessage().getText();
+        try {
+            String mes = update.getMessage().getText();
+            Command command = CommandHandler.handle(mes);
+            return getString(command);
+        } catch (Exception e) {
+            return "❌";
+        }
+    }
 
-        Command command = CommandHandler.handle(mes);
+    public static String buildMessage(Command command) {
+        try {
+            return getString(command);
+        } catch (Exception e) {
+            return "❌";
+        }
+    }
+
+    private static String getString(Command command) {
         if (command.getCommand() != null) {
             command.setArguments();
         } else {
@@ -51,7 +66,7 @@ public class Bot extends TelegramLongPollingBot {
             case "/help", "/HELP", "/Help", "/?" -> "/bin - Convert to binary\n/dec - Convert to Decimal";
             case "/bin", "/BIN", "/Bin" -> Convertor.convertStringToBinary(command.getArguments());
             case "/dec", "/DEC", "/Dec" -> Convertor.convertStringToDecimal(command.getArguments());
-            default -> "Invalid command";
+            default -> "❌";
         };
     }
 
