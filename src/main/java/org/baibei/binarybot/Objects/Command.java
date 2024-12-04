@@ -28,4 +28,14 @@ public class Command {
         System.arraycopy(arguments_after, 0, this.arguments, arguments_before.length, arguments_after.length);
         return this;
     }
+
+    public String[] getFirstTwoArguments() {
+        return new String[] {arguments[0], arguments[1]};
+    }
+
+    public String[] getOtherArguments() {
+        String[] other_args = new String[arguments.length - 2];
+        System.arraycopy(arguments, 2, other_args, 0, other_args.length);
+        return other_args;
+    }
 }

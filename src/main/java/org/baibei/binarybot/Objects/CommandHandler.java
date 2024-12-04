@@ -7,11 +7,15 @@ public class CommandHandler {
 
         String[] words = command.split(" ");
 
+        if (words.length <= 1) {
+            cmd.setCommand("Invalid command");
+            return cmd;
+        }
+
         int index = findCommand(words);
         if (index == -1) {
-            Command c = new Command();
-            c.setCommand("Invalid command");
-            return c;
+            cmd.setCommand("Invalid command");
+            return cmd;
         }
 
         String[] args_before = new String[index];
@@ -31,7 +35,7 @@ public class CommandHandler {
         return cmd;
     }
 
-    private static int findCommand(String[] words) {
+    public static int findCommand(String[] words) {
         for (int i = 0; i < words.length; i++) {
             if (!words[i].isEmpty()) {
                 if (words[i].charAt(0) == '/') {
