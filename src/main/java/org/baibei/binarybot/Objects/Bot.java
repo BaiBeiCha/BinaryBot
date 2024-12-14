@@ -69,9 +69,10 @@ public class Bot extends TelegramLongPollingBot {
             case "/help", "/HELP", "/Help", "/?" -> "/bin - Convert to binary\n/dec - Convert to Decimal";
             case "/bin", "/BIN", "/Bin" -> Convertor.convertStringToBinary(command.getArguments());
             case "/dec", "/DEC", "/Dec" -> Convertor.convertStringToDecimal(command.getArguments());
-            case "/to", "/TO", "/To" -> Convertor.convertStringTo(command.getOtherArguments(),
-                    Integer.parseInt(command.getFirstTwoArguments()[0]),
-                    Integer.parseInt(command.getFirstTwoArguments()[1]));
+            case "/to", "/TO", "/To" ->
+                    Convertor.convertStringTo(command.getOtherArguments(),
+                            Integer.parseInt(command.getFirstTwoArguments()[0]),
+                            Integer.parseInt(command.getFirstTwoArguments()[1]));
             default -> "❌";
         };
     }

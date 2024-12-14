@@ -15,16 +15,16 @@ import java.util.List;
 public class BinaryBotApplication {
 
     public static void main(String[] args) {
-        test(5);
+        //test(5);
 
-        //String converted = Convertor.convertTo("2AC", 16, 2);
+        //String converted = Convertor.convertTo("2ACd8A", 51, 10);
         //System.out.println("Converted: " + converted);
-        //System.out.println("ReConverted: " + Convertor.convertTo(converted, 2, 16));
+        //System.out.println("ReConverted: " + Convertor.convertTo(converted, 10, 51));
 
-        //SpringApplication.run(BinaryBotApplication.class, args);
+        SpringApplication.run(BinaryBotApplication.class, args);
     }
 
-    private static boolean test(int iterations) {
+    private static void test(int iterations) {
         HashMap<Integer, Character> ints = new HashMap<>();
 
         for (int i = 0; i <= 9; i++) {
@@ -76,7 +76,6 @@ public class BinaryBotApplication {
         for (Command command : commands) {
             System.out.println(Bot.buildMessage(command));
         }
-        return true;
     }
 
 }

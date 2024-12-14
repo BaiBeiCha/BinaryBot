@@ -26,35 +26,24 @@ public class Convertor {
         return decimal;
     }
 
-    public static String convertTo(long source, int baseFrom, int baseTo) {
-        StringBuilder result = new StringBuilder();
-
-        for (int i = 0; source != 0; i++) {
-            result.append((source % baseTo) * Math.pow(baseFrom, i));
-            source /= baseFrom;
-        }
-
-        return result.toString();
-    }
-
     public static String convertTo(String source, int baseFrom, int baseTo) {
-        HashMap<Character, Integer> symbols = new HashMap<>();
-        HashMap<Integer, Character> ints = new HashMap<>();
+        HashMap<Character, Long> symbols = new HashMap<>();
+        HashMap<Long, Character> ints = new HashMap<>();
 
-        for (int i = 0; i <= 9; i++) {
+        for (long i = 0; i <= 9; i++) {
             symbols.put((char) (i + '0'), i);
             ints.put(i, (char) (i + '0'));
         }
-        for (int i = 0; i < 26; i++) {
+        for (long i = 0; i < 26; i++) {
             symbols.put((char) ('A' + i), (10 + i));
             ints.put((10 + i), (char) ('A' + i));
         }
-        for (int i = 0; i < 26; i++) {
+        for (long i = 0; i < 26; i++) {
             symbols.put((char) ('a' + i), (10 + 26 + i));
             ints.put((10 + 26 + i), (char) ('a' + i));
         }
 
-        int intSource = 0;
+        long intSource = 0;
         for (int i = 0; i < source.length(); i++) {
             intSource += (int) (symbols.get(source.charAt(i))
                                 * Math.pow(baseFrom, (source.length() - i - 1)));
@@ -75,7 +64,7 @@ public class Convertor {
         for (int i = 0; i < source.length; i++) {
             if (!source[i].isEmpty()) {
                 try {
-                    char c = (char) (Integer.parseInt(convertTo(source[i], baseFrom, baseTo)));
+                    String c = convertTo(source[i], baseFrom, baseTo);
                     result.append(c);
                     if (i < result.length() - 1) {
                         result.append(' ');
